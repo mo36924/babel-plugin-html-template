@@ -1,0 +1,86 @@
+{
+  "name": "@mo36924/babel-plugin-html-template",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/mo36924/babel-plugin-html-template#readme",
+  "bugs": {
+    "url": "https://github.com/mo36924/babel-plugin-html-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mo36924/babel-plugin-html-template.git"
+  },
+  "license": "MIT",
+  "author": "mo36924",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "run-s clean lint format build:*",
+    "build:rollup": "rollup -c --configPlugin typescript",
+    "clean": "del dist",
+    "lint": "eslint --ext .ts --fix .",
+    "format": "run-s format:*",
+    "format:sort-package-json": "sort-package-json",
+    "format:prettier": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prettier": {
+    "htmlWhitespaceSensitivity": "ignore",
+    "printWidth": 120,
+    "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@mo36924/eslint-config"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@mo36924/eslint-config": "^2.0.2",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@types/babel__core": "^7.1.19",
+    "@types/escape-html": "^1.0.2",
+    "@types/html-minifier": "^4.0.2",
+    "cssnano": "^5.1.12",
+    "cssnano-preset-advanced": "^5.3.8",
+    "del-cli": "^4.0.1",
+    "esbuild": "^0.14.49",
+    "eslint": "^8.19.0",
+    "html-minifier": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "postcss-import-sync2": "^1.2.0",
+    "postcss-nested": "^5.0.6",
+    "prettier": "^2.7.1",
+    "rollup": "^2.76.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "sort-package-json": "^1.57.0",
+    "tsx": "^3.7.1",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.18.6",
+    "cssnano": "^5.1.12",
+    "cssnano-preset-advanced": "^5.3.8",
+    "esbuild": "^0.14.49",
+    "html-minifier": "^4.0.0",
+    "postcss": "^8.4.14",
+    "postcss-import-sync2": "^1.2.0",
+    "postcss-nested": "^5.0.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
