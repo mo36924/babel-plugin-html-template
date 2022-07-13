@@ -59,7 +59,7 @@ export default (_: any, options: Options): PluginObj => {
             filename,
             quasis
               .map((quasi) => quasi.value.cooked!)
-              .reduce((previous, current, i) => `${previous}${prefix}${i}${prefix}${current}`),
+              .reduce((previous, current, i) => `${previous}${prefix}${i - 1}${prefix}${current}`),
           );
 
           const parts = html.split(new RegExp(`${prefix}(\\d+)${prefix}`, "g"));
@@ -70,13 +70,17 @@ export default (_: any, options: Options): PluginObj => {
             throw path.buildCodeFrameError("Invalid html template strings array.");
           }
 
-          return t.taggedTemplateExpression(
-            tag,
-            t.templateLiteral(
-              _quasis.map((quasi, i) => t.templateElement({ raw: quasi, cooked: quasi }, i === length - 1)),
-              parts.filter((_, i) => i % 2).map((i) => expressions[Number(i)]),
+          path.replaceWith(
+            t.taggedTemplateExpression(
+              tag,
+              t.templateLiteral(
+                _quasis.map((quasi, i) => t.templateElement({ raw: quasi, cooked: quasi }, i === length - 1)),
+                parts.filter((_, i) => i % 2).map((i) => expressions[Number(i)]),
+              ),
             ),
           );
+
+          path.skip();
         },
       },
     },
