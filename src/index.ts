@@ -11,6 +11,8 @@ import { properties } from "../node_modules/css-declaration-sorter/orders/alphab
 
 const _filename = join(process.cwd(), "index.js");
 
+export type { Options };
+
 export default (_: any, options: Options): PluginObj => {
   const transformCss = (path: string, css: string) =>
     postcss([
