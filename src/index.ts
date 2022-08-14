@@ -55,7 +55,10 @@ export default (_: any, options: Options): PluginObj => {
           }
 
           const { file, filename = _filename } = state;
-          const prefix = "_".repeat(file.code.length);
+          const code = file.code;
+          let prefix = "";
+
+          while (code.includes((prefix += "_"))) {}
 
           const html = transformHtml(
             filename,
